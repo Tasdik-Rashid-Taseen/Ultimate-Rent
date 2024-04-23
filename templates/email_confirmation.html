@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+Welcome to Ultimate Rent
+
+Hello {{ name }}
+
+Please confirm your email by clicking on the following link.
+
+Confirmation link: http://{{ domain }}{% url 'activate_account' uidb64=uid token=token %}
+
+{% endautoescape %}

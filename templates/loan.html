@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ultimate Rent</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/login.css">
+      <style>
+    .calculator {
+      max-width: 600px;
+      margin: 25px auto;
+      padding: 25px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: block;
+      color: #13463c;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #1a322d;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    input[type="number"]:active {
+      border: 1px solid #00B98E;
+    }
+
+    .button {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      background-color: #00B98E;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #095e4a;
+    }
+
+    .output {
+      display: none;
+      /* Initially hidden */
+      background-color: #f9f9f9;
+      padding: 15px;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .output-group {
+      margin-bottom: 15px;
+    }
+
+    .output-group label {
+      font-weight: 500;
+      color: #666;
+    }
+
+    .output-group .value {
+      font-size: 18px;
+      font-weight: 500;
+      color: #00B98E;
+    }
+
+    .progress-bar-container {
+      background-color: white;
+      border-radius: 4px;
+      margin-top: 10px;
+      padding: 2px;
+    }
+
+    .progress-bar {
+      height: 20px;
+      border-radius: 2px;
+    }
+
+    .interest-bar {
+      background-color: #0E2E50;
+    }
+
+    .principal-bar {
+      background-color: #48c78e;
+    }
+
+    /* Additional styles for the home loan info section */
+    .home-loan-info {
+      max-width: full;
+      margin: 40px auto;
+      padding: 25px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .home-loan-info h2,
+    .home-loan-info h3 {
+      font-size: large;
+      color: #0E2E50;
+      margin-bottom: 10px;
+    }
+
+    .home-loan-info p {
+      font-size: medium;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .home-loan-info ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .home-loan-info li {
+      margin-bottom: 10px;
+    }
+
+    heading-section {
+      text-align: center;
+      padding: 30px 15px;
+      background-color: #f7f7f7;
+      margin-bottom: 10px;
+    }
+
+    .heading-section h2 {
+      font-size: 34px;
+      color: #00B98E;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    .heading-section p {
+      font-size: 25px;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+    <div>
+
+
+        <!-- Navbar Start -->
+        <div class="container-fluid nav-bar bg-transparent">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+                <a href="/" class="navbar-brand d-flex align-items-center text-center">
+                    <div class="icon p-2 me-2">
+                        <img class="img-fluid" src="/static/img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
+                    </div>
+                    <h1 class="m-0 text-primary">Ultimate Rent</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="/" class="nav-item nav-link ">Home</a>
+                        <a href="/about" class="nav-item nav-link">About</a>
+                        <!-- Add Update Profile Link -->
+                       <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Guides</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="{% url 'loan' %}" class="dropdown-item">Loan Guide</a>
+                                <a href="{% url 'guide' %}" class="dropdown-item">Buy/Sell Guide</a>
+                            </div>
+                        </div>
+                        <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
+                        {% if user.is_authenticated %}
+                        <!-- My Account option for logged-in users -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">My Account</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="/profile" class="dropdown-item">Profile</a>
+                                <a href="/settings" class="dropdown-item">Settings</a>
+                                <a href="{% url 'my_properties' %}" class="dropdown-item">My Properties</a>
+                                <a href="{% url 'visit_schedule_list' %}" class="dropdown-item">Visit Schedules</a>
+                                <a href="{% url 'user_schedule_requests' %}" class="dropdown-item">My Schedule
+                                    Requests</a>
+                                <!-- other account-related links -->
+                            </div>
+                        </div>
+
+
+                        <a href="/signout" class="nav-item nav-link">Sign Out</a>
+                        {% else %}
+                        <a href="/signin" class="nav-item nav-link">Login</a>
+                        <a href="/signup" class="nav-item nav-link">Sign Up</a>
+                        {% endif %}
+                    </div>
+                      {% if user.is_authenticated %}
+                    <a href="/add_property/" style="align-self: center" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
+                {% endif %}
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar End -->
+
+        <!-- Heading Section -->
+    <div class="heading-section text-center" style="margin-bottom: 0;" id="property-list">
+      <h2 style="font-size: 32px; color: #00B98E; margin-bottom: 5px;">Loan Calculator</h2>
+      <p style="font-size: 24px; color: #333;">Calculate Home Loan For Properties in Bangladesh</p>
+    </div>
+    <div class="calculator" style="margin-top 3px;">
+      <div class="input-group">
+        <label for="property-price">Property Price (BDT):</label>
+        <input type="number" id="property-price" placeholder="Enter property price">
+      </div>
+
+      <div class="input-group">
+        <label for="down-payment">Down Payment (BDT):</label>
+        <input type="number" id="down-payment" placeholder="Enter down payment">
+      </div>
+
+      <div class="input-group">
+        <label for="loan-period">Loan Period (years):</label>
+        <input type="number" id="loan-period" placeholder="Enter loan period">
+      </div>
+
+      <div class="input-group">
+        <label for="interest-rate">Interest Rate (%):</label>
+        <input type="number" id="interest-rate" placeholder="Enter interest rate">
+      </div>
+
+      <button id="calculate-btn" class="button">Calculate</button>
+
+
+    </div>
+  </div>
+  <div class="calculator border-0" style="box-shadow: none">
+    <div class="output" id="output-container">
+      <div class="output-group">
+        <label>Monthly Payment:</label>
+        <div id="monthly-payment" class="value">BDT 0</div>
+      </div>
+      <div class="output-group">
+        <label>Loan Amount:</label>
+        <div id="loan-amount" class="value">BDT 0</div>
+      </div>
+      <!-- Optional: Add progress bars or additional output groups here -->
+      <div class="output-group">
+        <div>
+          Payment Breakdown:
+        </div>
+      </div>
+      <!-- <div class="progress-bar-container">
+        <div class="progress-bar interest-bar" id="interest-bar"></div>
+        <div class="progress-bar principal-bar" id="principal-bar"></div>
+      </div> -->
+      <div class="output-group">
+        <div>
+          Payment Breakdown (Pie Chart):
+        </div>
+        <canvas id="payment-breakdown-pie-chart"></canvas>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container home home-loan-info">
+    <h2 style="font-size: 35px ; color:#0E2E50; padding-bottom: 10px; margin-top: 10px">Applying For
+      Home Loan in Bangladesh</h2>
+    <h2>What Is A Home Loan?</h2>
+    <p>A home loan is the credit provided by a bank, in order for an individual to buy a property. This loan can only be
+      used for the purpose of getting a home. The loan is repaid each month, until the principal is cleared in full
+      along with the interest.</p>
+
+    <h2>What Are The Different Types Of Home Loans?</h2>
+    <p>Usually, there are only fixed interest loans available, with monthly repayments on a reducing balance basis.
+      Interest is calculated on a monthly reducing balance as opposed to an annual reducing balance. As the market
+      develops it is likely that adjustable-rate mortgages will be possible.</p>
+
+    <h2>How To Apply For A Home Loan?</h2>
+    <p>In order to apply for a home loan simply call into your local bank, or call the customer care line and ask for
+      the home loan department. Applications will then be approved at the sole discretion of the bank in question. A
+      qualified mortgage advisor will be able to assist you in completing the application.</p>
+
+    <h2>Documents required for home loan application?</h2>
+    <p>The loan application is straightforward. You will need the original property title deed under your own name,
+      property insurance covering fire, earthquakes, flood, and cyclones, and The Irrevocable General Power of Attorney
+      (IGPA).</p>
+
+    <h2>Can we make a joint application for the home loan?</h2>
+    <p>Yes, joint application loans are possible, married couples will show the marriage certificate as an evidence to
+      the bank.</p>
+
+    <h2>How much loan I can borrow?</h2>
+    <p>Usually it be no more than 70% of the property valuation that can be borrowed, this includes the registration
+      cost.</p>
+
+    <h2>What is home loan EMI and how to calculate EMI?</h2>
+    <p>Home loan EMI (Equated Monthly Installments) is the amount you will repay each period, until the loan is cleared
+      in full. Our home loan calculator will help you calculate much needs to be repaid. When you input the loan amount,
+      the time period, and interest rate, the EMI or bank loan calculator provide how much you need to repay each month.
+    </p>
+
+    <h2>What will be my monthly EMI?</h2>
+    <p>The monthly EMI will be the sum of the principal amount and interest, divided by the number of months, in which
+      the loan will be repaid. A mortgage calculator can help you out with this.</p>
+
+    <h2>Where can you get a home loans from?</h2>
+    <p>Home loans are available from large local and international banks such as HSBC, DBH, BRAC, IFIC, DBBL and Bank
+      One. It is also worth checking out if you qualify to get a loan from the Bangladesh House Building Finance
+      Corporation.</p>
+
+    <h2>What is the home loan repayment procedure?</h2>
+    <p>Repayments are made in the form of monthly instalments. You can choose the length of the tenure, usually between
+      5 to 25 years. The amount will be automatically debited from your personal account.</p>
+
+    <h2>What will be the maximum amount I will be allowed to pay during loan tenure?</h2>
+    <p>There is usually no maximum allowed for repayment but it is worth contacting a local bank clerk about this.</p>
+
+    <h2>Can I repay my home loan before the maturity date?</h2>
+    <p>In most cases the bank will have a partial or early settlement facility, allowing you to pay off the loan as
+      quickly as you desire.</p>
+  </div>
+<!-- Footer Start -->
+  <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5" style="background-color: #0E2E50">
+    <div class="container py-5" style="background-color: #0E2E50; border: none">
+      <div class="row g-5" style="background-color: #0E2E50; border: none">
+        <div class="col-lg-3 col-md-6" style="background-color: #0E2E50">
+          <h5 class="text-white mb-4">Get In Touch</h5>
+          <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, Sylhet, Bangladesh</p>
+          <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+          <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+          <div class="d-flex pt-2">
+            <a class="btn btn-outline-light btn-social" href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-outline-light btn-social" href="https://facebook.com"><i
+                class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-outline-light btn-social" href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+            <a class="btn btn-outline-light btn-social" href="https://linkedin.com"><i
+                class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Quick Links</h5>
+          <a class="btn btn-link text-white-50" href="#about">About Us</a>
+          <a class="btn btn-link text-white-50" href="#contact">Contact Us</a>
+          <a class="btn btn-link text-white-50" href="#services">Our Services</a>
+          <a class="btn btn-link text-white-50" href="#privacy">Privacy Policy</a>
+          <a class="btn btn-link text-white-50" href="#terms">Terms & Condition</a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Recent Posts</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+              <a href="https://www.linkedin.com/pulse/understanding-current-real-estate-market-in-depth-analysis-hoque-tltpc" class="nav-link p-0 text-white-50">
+                <strong class="text-white">Understanding Real Estate Trends</strong>
+                <br>
+                <small>March 10, 2024</small>
+              </a>
+            </li>
+            <li class="nav-item mb-2">
+              <a href="https://nerdwallet.com/article/mortgages/tips-for-first-time-home-buyers" class="nav-link p-0 text-white-50">
+                <strong class="text-white">Tips for First-Time Home Buyers</strong>
+                <br>
+                <small>February 20, 2024</small>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.fool.com/investing/stock-market/market-sectors/real-estate-investing/commercial-real-estate/" class="nav-link p-0 text-white-50">
+                <strong class="text-white">How to Invest in Commercial Property</strong>
+                <br>
+                <small>January 15, 2024</small>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Newsletter</h5>
+          <p>Subscribe to our newsletter for the latest updates and offers.</p>
+          <div class="position-relative mx-auto" style="max-width: 400px;">
+            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="email" placeholder="Your email">
+            <button type="button"
+              class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container pb-2" style="background-color: #0E2E50; border: none">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          &copy; <a class="border-bottom" href="#">Ultimate Rent</a>, All Right Reserved. Designed By <a
+            class="border-bottom" href="https://jts.com">JTS</a>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <div class="footer-menu">
+            <a href="/">Home</a>
+            <a href="/">Cookies</a>
+            <a href="/">Help</a>
+            <a href="/">FQAs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
+
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/static/js/main.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+  <script>
+    document.getElementById('calculate-btn').addEventListener('click', function () {
+      var propertyPrice = parseFloat(document.getElementById('property-price').value);
+      var downPayment = parseFloat(document.getElementById('down-payment').value);
+      var loanPeriod = parseInt(document.getElementById('loan-period').value);
+      var interestRate = parseFloat(document.getElementById('interest-rate').value);
+
+      // Calculate loan amount
+      var loanAmount = propertyPrice - downPayment;
+      // Convert annual interest rate to a monthly rate
+      var monthlyInterestRate = interestRate / 100 / 12;
+      // Convert loan period in years to number of monthly payments
+      var numberOfPayments = loanPeriod * 12;
+      // Monthly payment calculation using the EMI formula
+      var monthlyPayment = loanAmount * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
+      // Calculate total payment and total interest paid
+      var totalPayment = monthlyPayment * numberOfPayments;
+      var totalInterest = totalPayment - loanAmount;
+
+      // Update output elements
+      document.getElementById('monthly-payment').innerText = `BDT ${monthlyPayment.toFixed(2)}`;
+      document.getElementById('loan-amount').innerText = `BDT ${loanAmount.toFixed(2)}`;
+
+      // Define pie chart data
+      var pieData = {
+        labels: ['Total Interest', 'Principal Loan Amount'],
+        datasets: [{
+          data: [totalInterest, loanAmount],
+          backgroundColor: ['#0E2E50', '#00B98E'],
+          hoverOffset: 4
+        }]
+      };
+
+      // Get the context of the canvas element we added
+      var ctx = document.getElementById('payment-breakdown-pie-chart').getContext('2d');
+
+      // Check if we have already created a chart instance
+      if (window.pieChart instanceof Chart) {
+        // Update the chart data
+        window.pieChart.data.datasets[0].data = [totalInterest, loanAmount];
+        window.pieChart.update();
+      } else {
+        // Create a new chart instance
+        window.pieChart = new Chart(ctx, {
+          type: 'pie',
+          data: pieData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 1, // Keeping the aspect ratio as 1:1
+            animation: {
+              animateScale: true,
+              animateRotate: true
+            }
+          }
+        });
+      }
+
+      // Display the output container if it's not already visible
+      document.getElementById('output-container').style.display = 'block';
+    });
+  </script>
+</body>
+
+</html>
